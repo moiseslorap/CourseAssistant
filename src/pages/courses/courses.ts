@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Modal } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { NewCoursePage } from '../new-course/new-course';
 import { CourseDetailsPage } from '../course-details/course-details';
 import { CoursesProvider } from '../../providers/courses/courses';

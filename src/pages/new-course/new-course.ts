@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { CoursesProvider } from '../../providers/courses/courses';
-import { CoursesPage } from '../courses/courses';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 
 /**
@@ -26,7 +24,7 @@ export class NewCoursePage {
   public base64Image: string;
   public photos: any;
 
-  constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams, private storage: CoursesProvider) {
+  constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -41,9 +39,9 @@ export class NewCoursePage {
       courseNumber: this.courseNumber,
       photos: this.photos
     };
-
+    console.log(this.photos);
     console.log(course);
-    this.view.dismiss(course)
+    this.view.dismiss(course);
   }
 
   close() {
@@ -51,19 +49,18 @@ export class NewCoursePage {
   }
 
   takePhoto() {
-    const options: CameraOptions = {
-      quality: 100,
+    const options : CameraOptions = {
+      quality: 100, // picture quality
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    this.camera.getPicture(options)
-      .then((imageData) => {
+    this.camera.getPicture(options) .then((imageData) => {
         this.base64Image = "data:image/jpeg;base64," + imageData;
         this.photos.push(this.base64Image);
         this.photos.reverse();
-      }, (error) => {
-        console.error(error);
+      }, (err) => {
+        console.log(err);
       });
   }
 

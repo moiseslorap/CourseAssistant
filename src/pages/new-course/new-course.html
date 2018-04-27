@@ -51,26 +51,20 @@
       </ion-row>
     </ion-grid>
   </ion-list>
-  <ion-list>
-    <ion-list-header>
-      My Locker
-    </ion-list-header>
-    <ion-item>
-      <button ion-button full (click)="takePhoto()">
-          Take Photo
-      </button>
-    </ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6 *ngFor="let photo of photos; let id = index">
-          <ion-card class="block">
-            <ion-icon name="trash" class="deleteIcon"></ion-icon>
-            <img [src]="photo" *ngIf="photo" />
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-list>
+  <button ion-button full (click)="takePhoto()">
+    Take Photo
+  </button>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let photo of photos; let id = index">
+        <ion-card class="block">
+          <ion-icon name="trash" class="deleteIcon"></ion-icon>
+          <img [src]="photo" *ngIf="photo" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
   <button ion-button full (click)="saveItem()">Add Course</button>
 </ion-content>
