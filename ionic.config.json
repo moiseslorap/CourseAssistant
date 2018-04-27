@@ -1,0 +1,8 @@
+{
+  "name": "CourseAssistant",
+  "app_id": "9b4420f4",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
