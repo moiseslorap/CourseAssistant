@@ -95,6 +95,5 @@ export class CourseDetailsPage {
     var geocoder = new google.maps.Geocoder();
     this.geocodeAddress(geocoder, this.map);
     //this.addMarker();
-
   }
 }
