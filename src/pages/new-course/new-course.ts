@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera'
-
+import { CoursesProvider } from '../../providers/courses/courses'
 /**
  * Generated class for the NewCoursePage page.
  *
@@ -16,18 +16,22 @@ import { Camera, CameraOptions } from '@ionic-native/camera'
 })
 export class NewCoursePage {
 
-  buildings = ['BOO','BRN','CAR','CBT','COL','EAS','ENG','GAN','GLE','GOL','GOS','HAC','HLC','INA','LAC','LBJ','LBR','LOW','ORN','RED','ROS','SLA','SUS','WEL'];
+  public buildings: any;
   building: string;
   roomNumber: string;
   courseName: string;
   courseNumber: string;
+  buildingKeys: any;
   public base64Image: string;
   public photos: any;
 
-  constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams, public list:CoursesProvider) {
+    
   }
 
   ionViewDidLoad() {
+    this.buildings = this.list.setBuildings();
+    console.log(this.buildings)
     console.log('ionViewDidLoad NewCoursePage');
   }
 

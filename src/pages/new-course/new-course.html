@@ -38,7 +38,7 @@
 
             <ion-label floating>Building</ion-label>
             <ion-select [(ngModel)]="building" name="building">
-              <ion-option *ngFor="let building of buildings" [value]="building">{{building}}</ion-option>
+              <ion-option *ngFor="let building of buildings" [value]="building.id">{{building.id}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>

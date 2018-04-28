@@ -1,5 +1,6 @@
-import { Component, ViewChild, ElementRef} from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
+import { CoursesProvider } from '../../providers/courses/courses'
 
 declare var google;
 
@@ -11,61 +12,80 @@ declare var google;
 export class CourseDetailsPage {
 
   @ViewChild('map') mapElement: ElementRef;
-  map: any; 
+  map: any;
 
   building;
   roomNumber;
   courseName;
   courseNumber;
   photos;
-  constructor(public navParams: NavParams) {
+  buildings;
+  position;
+  constructor(public navParams: NavParams, public list: CoursesProvider) {
   }
 
   ionViewDidLoad() {
-    this.loadMap();
     console.log('ionViewDidLoad CourseDetailsPage');
     this.courseNumber = this.navParams.get('course').courseNumber;
     this.courseName = this.navParams.get('course').courseName;
     this.roomNumber = this.navParams.get('course').roomNumber;
     this.building = this.navParams.get('course').building;
     this.photos = this.navParams.get('course').photos;
+    this.buildings = this.list.setBuildings();
+    this.buildings = this.list.setBuildings();
+    this.loadMap();
   }
 
-  loadMap(){
-    let latLng = new google.maps.LatLng(43.0842093,-77.6803826);
+
+  // getLatlong(){
+  //       let geocoder = new google.maps.Geocoder();
+  //       let address = this.buildings.find(b => b.id == this.building).name;
+  //       console.log(address);
+  //       geocoder.geocode({ 'address': address }, function (results, status) {
+
+  //           if (status == google.maps.GeocoderStatus.OK) {
+  //               let lat = results[0].geometry.location.lat();
+  //               let lng = results[0].geometry.location.lng();
+  //               this.position = lat + ',' + lng;
+  //               console.log(this.position);
+  //           }
+  //       });
+  // }
+
+  geocodeAddress(geocoder, map) {
+    let address = this.buildings.find(b => b.id == this.building).name;
+    geocoder.geocode({ 'address': address }, function (results, status) {
+      if (status === 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map,
+          animation: google.maps.Animation.DROP,
+          position: results[0].geometry.location,
+          title: address
+        });
+        
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+  loadMap() {
+    console.log(this.position);
+    let latLng = new google.maps.LatLng(this.position);
+    console.log(latLng);
     let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      center: { lat: -34.397, lng: 150.644 },
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      gestureHandling: 'greedy',
+      mapTypeControl: false
     }
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
-    this.addMarker();
+    var geocoder = new google.maps.Geocoder();
+    this.geocodeAddress(geocoder, this.map);
+    //this.addMarker();
 
-  }
-  addMarker(){
- 
-    let marker = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
-    });
-   
-    let content = "<h4>Information!</h4>";         
-   
-    this.addInfoWindow(marker, content);
-   
-  }
-
-  addInfoWindow(marker, content){
- 
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-   
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
-   
   }
 
 }
