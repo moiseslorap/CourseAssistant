@@ -23,7 +23,7 @@ export class NewCoursePage {
   courseNumber: string;
   buildingKeys: any;
   public base64Image: string;
-  public photos: [];
+  public photos: Array<string>;
 
   constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams, public list:CoursesProvider) {
     
