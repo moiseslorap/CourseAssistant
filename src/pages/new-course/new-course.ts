@@ -23,7 +23,7 @@ export class NewCoursePage {
   courseNumber: string;
   buildingKeys: any;
   public base64Image: string;
-  public photos: any;
+  public photos: [];
 
   constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams, public list:CoursesProvider) {
     
@@ -32,7 +32,7 @@ export class NewCoursePage {
   ionViewDidLoad() {
     this.buildings = this.list.setBuildings();
     console.log(this.buildings)
-    console.log('ionViewDidLoad NewCoursePage');
+    console.log('ionViewDidLoad New-CoursePage');
   }
 
   saveItem() {

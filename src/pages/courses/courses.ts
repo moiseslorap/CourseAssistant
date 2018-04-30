@@ -47,6 +47,7 @@ export class CoursesPage {
 
   saveCourse(course){
     this.coursesList.push(course);
+    this.storage.saveCoursesToStorage(this.coursesList);
   }
 
   viewCourse(course){

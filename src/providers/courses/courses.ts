@@ -18,7 +18,7 @@ export class CoursesProvider {
     return this.storage.get('courses');
     //return this.courses;
   }
-  public saveCourseToStorage(courses){
+  public saveCoursesToStorage(courses){
     this.storage.set('courses', courses);
     //this.courses.push(course);
     //console.log(this.courses);

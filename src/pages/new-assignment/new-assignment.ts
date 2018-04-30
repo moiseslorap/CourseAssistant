@@ -33,7 +33,6 @@ export class NewAssignmentPage {
     this.viewCtrl.dismiss(this.event);
   }
  
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewAssignmentPage');
   }
