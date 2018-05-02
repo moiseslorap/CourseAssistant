@@ -16,6 +16,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { InAppBrowser, InAppBrowserEvent} from '@ionic-native/in-app-browser';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { InAppBrowser, InAppBrowserEvent} from '@ionic-native/in-app-browser';
     CoursesProvider,
     AssignmentsProvider,
     Camera,
-    InAppBrowser
+    InAppBrowser,
+    StorageProvider
   ]
 })
 export class AppModule {}
