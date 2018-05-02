@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera'
-import { CoursesProvider } from '../../providers/courses/courses'
-/**
+import { StorageProvider } from '../../providers/storage/storage';/**
  * Generated class for the NewCoursePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -20,12 +19,12 @@ export class NewCoursePage {
   building: string;
   roomNumber: string;
   courseName: string;
-  courseNumber: string;
+  id: string;
   buildingKeys: any;
   public base64Image: string;
   public photos: Array<string>;
 
-  constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams, public list:CoursesProvider) {
+  constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams, public list:StorageProvider) {
     
   }
 
@@ -40,8 +39,8 @@ export class NewCoursePage {
       building: this.building,
       roomNumber: this.roomNumber,
       courseName: this.courseName,
-      courseNumber: this.courseNumber,
-      photos: this.photos
+      id: this.id,
+      photos: this.photos,
     };
     console.log(this.photos);
     console.log(course);

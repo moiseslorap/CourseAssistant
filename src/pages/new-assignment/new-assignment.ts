@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import * as moment from 'moment';
+import { StorageProvider } from '../../providers/storage/storage';
 
 /**
  * Generated class for the NewAssignmentPage page.
@@ -16,13 +17,15 @@ import * as moment from 'moment';
 })
 export class NewAssignmentPage {
 
-  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
+  assignment = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), id: String};
   minDate = new Date().toISOString();
+  public courses = [];
  
-  constructor(public navCtrl: NavController, private navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, public viewCtrl: ViewController, private storage: StorageProvider) {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
-    this.event.startTime = preselectedDate;
-    this.event.endTime = preselectedDate;
+    this.assignment.startTime = preselectedDate;
+    this.assignment.endTime = preselectedDate;
+    
   }
  
   cancel() {
@@ -30,11 +33,17 @@ export class NewAssignmentPage {
   }
  
   save() {
-    this.viewCtrl.dismiss(this.event);
+    this.viewCtrl.dismiss(this.assignment);
   }
  
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewAssignmentPage');
+    this.storage.getCourses()
+      .then((courses) => {
+        if (courses)
+          this.courses = courses;
+      });
+    console.log(this.courses);
   }
 
   

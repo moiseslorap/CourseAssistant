@@ -22,7 +22,7 @@
   <ion-list>
     <ion-item *ngFor="let course of coursesList" (click)="viewCourse(course)">
       <ion-card>
-        <ion-card-header>{{course.courseNumber}}</ion-card-header>
+        <ion-card-header>{{course.id}}</ion-card-header>
         <ion-card-content>
           {{course.courseName}}
         </ion-card-content>

@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
-import { CoursesProvider } from '../../providers/courses/courses'
-
+import { StorageProvider } from '../../providers/storage/storage';
 declare var google;
 
 @IonicPage()
@@ -17,16 +16,16 @@ export class CourseDetailsPage {
   building;
   roomNumber;
   courseName;
-  courseNumber;
+  id;
   photos;
   buildings;
   position;
-  constructor(public navParams: NavParams, public list: CoursesProvider) {
+  constructor(public navParams: NavParams, public list: StorageProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CourseDetailsPage');
-    this.courseNumber = this.navParams.get('course').courseNumber;
+    console.log('ionViewDcourseNameLoad CourseDetailsPage');
+    this.id = this.navParams.get('course').id;
     this.courseName = this.navParams.get('course').courseName;
     this.roomNumber = this.navParams.get('course').roomNumber;
     this.building = this.navParams.get('course').building;

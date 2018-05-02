@@ -12,22 +12,28 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+      <ion-label floating>Select a course</ion-label>
+        <ion-select [(ngModel)]="assignment.id" name="building">
+          <ion-option *ngFor="let course of courses" [value]="course.id">{{course.id}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Title" [(ngModel)]="assignment.title"></ion-input>
     </ion-item>
  
     <ion-item>
       <ion-label>Start</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="assignment.startTime" [min]="minDate"></ion-datetime>
     </ion-item>
  
     <ion-item>
       <ion-label>End</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="assignment.endTime" [min]="minDate"></ion-datetime>
     </ion-item>
  
     <ion-item>
       <ion-label>All Day?</ion-label>
-      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="assignment.allDay"></ion-checkbox>
     </ion-item>
   </ion-list>
  

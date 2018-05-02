@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { NewCoursePage } from '../new-course/new-course';
 import { CourseDetailsPage } from '../course-details/course-details';
-import { CoursesProvider } from '../../providers/courses/courses';
+import { StorageProvider } from '../../providers/storage/storage';
 /**
  * Generated class for the CoursesPage page.
  *
@@ -19,7 +19,7 @@ export class CoursesPage {
 
   public coursesList = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: CoursesProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: StorageProvider, public modalCtrl: ModalController) {
     this.storage.getCourses()
       .then((courses) => {
         if (courses)

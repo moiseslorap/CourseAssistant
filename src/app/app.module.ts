@@ -7,15 +7,12 @@ import { NewCoursePage } from '../pages/new-course/new-course';
 import { CalendarPage} from '../pages/calendar/calendar';
 import { CoursesPage} from '../pages/courses/courses';
 import { CourseDetailsPage } from '../pages/course-details/course-details';
-import { AssignmentsPage } from '../pages/assignments/assignments';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CoursesProvider } from '../providers/courses/courses';
-import { AssignmentsProvider } from '../providers/assignments/assignments';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { NgCalendarModule  } from 'ionic2-calendar';
-import { InAppBrowser, InAppBrowserEvent} from '@ionic-native/in-app-browser';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [
@@ -24,7 +21,6 @@ import { InAppBrowser, InAppBrowserEvent} from '@ionic-native/in-app-browser';
     NewCoursePage,
     CoursesPage,
     CalendarPage,
-    AssignmentsPage,
     CourseDetailsPage
   ],
   imports: [
@@ -41,17 +37,14 @@ import { InAppBrowser, InAppBrowserEvent} from '@ionic-native/in-app-browser';
     NewCoursePage,
     CoursesPage,
     CalendarPage,
-    AssignmentsPage,
     CourseDetailsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CoursesProvider,
-    AssignmentsProvider,
     Camera,
-    InAppBrowser
+    StorageProvider
   ]
 })
 export class AppModule {}
