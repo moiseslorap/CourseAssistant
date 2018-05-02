@@ -60,10 +60,11 @@
             <img [src]="photo" *ngIf="photo" />
           </ion-card>
         </ion-col>
-        <ion-col padding>
+      </ion-row>
+      <ion-row padding>
+        <ion-col>
           <button full ion-button color="accent" (click)="takePhoto()">Take Photo</button>
         </ion-col>
-
       </ion-row>
     </ion-grid>
   </ion-list>
