@@ -12,10 +12,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { NgCalendarModule  } from 'ionic2-calendar';
-<<<<<<< HEAD
-=======
-import { InAppBrowser, InAppBrowserEvent} from '@ionic-native/in-app-browser';
->>>>>>> 39a30f83251f85b224a29b7518819f1b3abf0979
 import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
@@ -48,10 +44,6 @@ import { StorageProvider } from '../providers/storage/storage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-<<<<<<< HEAD
-=======
-    InAppBrowser,
->>>>>>> 39a30f83251f85b224a29b7518819f1b3abf0979
     StorageProvider
   ]
 })
