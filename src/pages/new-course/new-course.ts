@@ -22,7 +22,7 @@ export class NewCoursePage {
   id: string;
   buildingKeys: any;
   public base64Image: string;
-  public photos: Array<string>;
+  public photos = [];
 
   constructor(private camera: Camera, public view: ViewController, public navCtrl: NavController, public navParams: NavParams, public list:StorageProvider) {
     
