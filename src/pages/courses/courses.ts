@@ -30,24 +30,20 @@ export class CoursesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CoursesPage');
   }
-
+  //adds modal
   addCourse() {
     let addModal = this.modalCtrl.create(NewCoursePage);
- 
     addModal.onDidDismiss((course) => {
- 
           if(course){
             this.saveCourse(course);
           }
- 
     });
- 
     addModal.present();
   }
 
   saveCourse(course){
     this.coursesList.push(course);
-    this.storage.saveCoursesToStorage(this.coursesList);
+    this.storage.saveCoursesToStorage(this.coursesList); //saves courses array to storage
   }
 
   viewCourse(course){

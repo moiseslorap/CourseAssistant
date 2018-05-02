@@ -49,15 +49,21 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-list-header padding-top>
+        My Locker
+      </ion-list-header>
+      <ion-row padding>
 
-      <ion-row>
-        <button ion-button full (click)="takePhoto()">Take Photo</button>
         <ion-col col-6 *ngFor="let photo of photos; let id = index">
           <ion-card class="block">
             <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(index);"></ion-icon>
             <img [src]="photo" *ngIf="photo" />
           </ion-card>
         </ion-col>
+        <ion-col padding>
+          <button full ion-button color="accent" (click)="takePhoto()">Take Photo</button>
+        </ion-col>
+
       </ion-row>
     </ion-grid>
   </ion-list>

@@ -25,35 +25,24 @@ export class CourseDetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDcourseNameLoad CourseDetailsPage');
+    //getting values from nav params
     this.id = this.navParams.get('course').id;
     this.courseName = this.navParams.get('course').courseName;
     this.roomNumber = this.navParams.get('course').roomNumber;
     this.building = this.navParams.get('course').building;
     this.photos = this.navParams.get('course').photos;
-    this.buildings = this.list.setBuildings();
-    this.buildings = this.list.setBuildings();
-    this.loadMap();
+    this.buildings = this.list.setBuildings(); //populating buildings from storage
+    this.loadMap(); //loads map
   }
 
-
-  // getLatlong(){
-  //       let geocoder = new google.maps.Geocoder();
-  //       let address = this.buildings.find(b => b.id == this.building).name;
-  //       console.log(address);
-  //       geocoder.geocode({ 'address': address }, function (results, status) {
-
-  //           if (status == google.maps.GeocoderStatus.OK) {
-  //               let lat = results[0].geometry.location.lat();
-  //               let lng = results[0].geometry.location.lng();
-  //               this.position = lat + ',' + lng;
-  //               console.log(this.position);
-  //           }
-  //       });
-  // }
-
+  /*GOOGLE PLACES API
+  *Gets the location of the building given a query, in this case the building name. 
+  */
   geocodeAddress(geocoder, map) {
-    let address = this.buildings.find(b => b.id == this.building).name;
-    let location = this.building + "-" + this.roomNumber;
+    let address = this.buildings.find(b => b.id == this.building).name; //finding building name given the id on the buildings array
+    let location = this.building + "-" + this.roomNumber; //used on content
+
+    //this block gets location given the name
     geocoder.geocode({ 'address': address }, function (results, status) {
       if (status === 'OK') {
         map.setCenter(results[0].geometry.location);
@@ -78,11 +67,11 @@ export class CourseDetailsPage {
 
     });
   }
-
+  /*GOOGLE MAPS API
+  * Initializes the map and calls the geocodeAddress function on the created map 
+  */
   loadMap() {
     console.log(this.position);
-    let latLng = new google.maps.LatLng(this.position);
-    console.log(latLng);
     let mapOptions = {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 17,
@@ -93,6 +82,5 @@ export class CourseDetailsPage {
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
     var geocoder = new google.maps.Geocoder();
     this.geocodeAddress(geocoder, this.map);
-    //this.addMarker();
   }
 }

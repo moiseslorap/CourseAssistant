@@ -17,7 +17,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 })
 export class NewAssignmentPage {
 
-  assignment = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), id: String};
+  assignment = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), id: String}; //event object
   minDate = new Date().toISOString();
   public courses = [];
  
@@ -25,7 +25,6 @@ export class NewAssignmentPage {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
     this.assignment.startTime = preselectedDate;
     this.assignment.endTime = preselectedDate;
-    
   }
  
   cancel() {

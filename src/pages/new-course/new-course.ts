@@ -29,12 +29,13 @@ export class NewCoursePage {
   }
 
   ionViewDidLoad() {
+    //populate buildings array from storage
     this.buildings = this.list.setBuildings();
-    console.log(this.buildings)
     console.log('ionViewDidLoad New-CoursePage');
   }
 
   saveItem() {
+    //course object
     let course = {
       building: this.building,
       roomNumber: this.roomNumber,
@@ -42,11 +43,9 @@ export class NewCoursePage {
       id: this.id,
       photos: this.photos,
     };
-    console.log(this.photos);
-    console.log(course);
     this.view.dismiss(course);
   }
-
+  //closes modal
   close() {
     this.view.dismiss();
   }
@@ -60,7 +59,7 @@ export class NewCoursePage {
     }
     this.camera.getPicture(options) .then((imageData) => {
         this.base64Image = "data:image/jpeg;base64," + imageData;
-        this.photos.push(this.base64Image);
+        this.photos.push(this.base64Image); //pushing captured image into array
         this.photos.reverse();
       }, (err) => {
         console.log(err);
@@ -68,7 +67,6 @@ export class NewCoursePage {
   }
 
   deletePhoto(index){
-    this.photos.splice(index, 1);
+    this.photos.splice(index, 1); //deletes given index from photos array
   }
-
 }

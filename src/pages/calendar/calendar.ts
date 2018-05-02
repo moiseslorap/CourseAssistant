@@ -15,16 +15,18 @@ import * as moment from 'moment';
   templateUrl: 'calendar.html',
 })
 export class CalendarPage {
-  eventSource = [];
-  viewTitle: string;
+  eventSource = []; //array containing the event objects
+  viewTitle: string; //title 
   selectedDay = new Date();
   
+  //calendar object
   calendar = {
     mode: 'month',
     currentDate: new Date()
   };
 
   constructor(private storage: StorageProvider, private modalCtrl: ModalController, private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
+    //getting assignments from storage
     this.storage.getAssignments()
       .then((assignments) => {
         if (assignments)
@@ -36,6 +38,7 @@ export class CalendarPage {
     console.log('ionViewDidLoad CalendarPage');
   }
 
+  //modal for creating new assignment
   addEvent() {
     let modal = this.modalCtrl.create('NewAssignmentPage', {selectedDay: this.selectedDay});
     modal.present();
@@ -54,7 +57,7 @@ export class CalendarPage {
         });
       }
     });
-    console.log(this.eventSource)
+    //saving assignments
     this.storage.saveAssignmentsToStorage(this.eventSource);
   }
  
@@ -62,6 +65,7 @@ export class CalendarPage {
     this.viewTitle = title;
   }
  
+  //creates alert for selected event
   onEventSelected(event) {
     let start = moment(event.startTime).format('LLLL');
     let end = moment(event.endTime).format('LLLL');
@@ -72,7 +76,8 @@ export class CalendarPage {
     })
     alert.present();
   }
- 
+  
+  //assigns the time of the selected calendar day to the selected time
   onTimeSelected(ev) {
     this.selectedDay = ev.selectedTime;
   }
